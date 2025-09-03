@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Хватайка — Игрушки для автоматов оптом</title>
+  <meta name="description" content="Оптовые поставки игрушек для автоматов Хватайка. Минимальный заказ 100 шт. Доставка по РФ, Беларуси, Казахстану.">
+  <link rel="icon" href="source/images/logo.jpg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .bg-brand-600 { background: linear-gradient(90deg,#f43f5e,#f59e42); }
+    .bg-brand-700 { background: linear-gradient(90deg,#be185d,#ea580c); }
+    .text-brand-700 { color: #be185d; }
+    .text-brand-600 { color: #f43f5e; }
+    .bg-gradient-hero { background: linear-gradient(120deg,#f43f5e 0%,#f59e42 100%); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <!-- Нав-бар -->
+  <header class="bg-white shadow sticky top-0 z-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+      <a href="#" class="flex items-center gap-3">
+        <img src="source/images/logo.jpg" alt="Логотип" class="h-12 w-12 rounded-full border border-slate-200">
+        <span class="font-bold text-xl text-brand-700">Хватайка</span>
+      </a>
+      <nav class="hidden md:flex gap-8 text-base">
+        <a href="#about" class="hover:text-brand-700">О компании</a>
+        <a href="#catalog" class="hover:text-brand-700">Каталог</a>
+        <a href="#terms" class="hover:text-brand-700">Условия</a>
+        <a href="#contacts" class="hover:text-brand-700">Контакты</a>
+      </nav>
+      <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-slate-100">
+        <svg width="28" height="28" fill="none" stroke="currentColor"><path stroke-width="2" d="M4 7h20M4 14h20M4 21h20"/></svg>
+      </button>
+    </div>
+    <nav id="mobileMenu" class="md:hidden hidden px-4 pb-4 flex flex-col gap-2 bg-white border-b">
+      <a href="#about" class="py-2 hover:text-brand-700">О компании</a>
+      <a href="#catalog" class="py-2 hover:text-brand-700">Каталог</a>
+      <a href="#terms" class="py-2 hover:text-brand-700">Условия</a>
+      <a href="#contacts" class="py-2 hover:text-brand-700">Контакты</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-gradient-hero py-16" id="hero">
+    <div class="mx-auto max-w-4xl px-4 text-center">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-6">Игрушки для автоматов Хватайка оптом</h1>
+      <p class="text-lg text-white/90 mb-8">Минимальный заказ — <span class="font-bold">100 шт</span>. Доставка по РФ, Беларуси и Казахстану.</p>
+      <a href="#form" class="inline-flex items-center rounded-2xl bg-white text-brand-700 px-6 py-4 font-semibold text-lg shadow hover:bg-brand-600 hover:text-white transition">Оставить заявку</a>
+    </div>
+  </section>
+
+  <!-- О компании -->
+  <section class="py-16" id="about">
+    <div class="mx-auto max-w-4xl px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4 text-brand-700">О компании</h2>
+      <p class="text-lg text-slate-700">Мы занимаемся оптовыми поставками игрушек для автоматов «Хватайка». В наличии более 30 видов игрушек разных размеров. Работаем с развлекательными центрами, аркадными залами, торговыми точками по всей России, Беларуси и Казахстану.</p>
+    </div>
+  </section>
+
+  <!-- Галерея товаров -->
+  <section class="py-16" id="catalog">
+    <div class="mx-auto max-w-7xl px-4">
+      <h2 class="text-2xl font-bold mb-8 text-brand-700 text-center">Каталог игрушек</h2>
+      <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </div>
+  </section>
+
+  <!-- Условия сотрудничества -->
+  <section class="py-16 bg-white" id="terms">
+    <div class="mx-auto max-w-4xl px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4 text-brand-700">Условия сотрудничества</h2>
+      <ul class="text-lg text-slate-700 space-y-2">
+        <li>Минимальный заказ — <span class="font-bold">100 шт</span></li>
+        <li>Доставка транспортной компанией в любой город РФ, Беларусь и Казахстан</li>
+        <li>Оплата удобным способом</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Заявки только через Telegram-бота -->
+  <section class="py-16" id="form">
+    <div class="mx-auto max-w-md px-4 text-center">
+      <h2 class="text-2xl font-bold mb-4 text-brand-700">Оставить заявку</h2>
+      <a href="https://t.me/grabtoybot" target="_blank" class="inline-flex items-center gap-2 rounded-2xl bg-brand-600 text-white px-6 py-4 font-semibold text-lg shadow hover:bg-brand-700 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.707 7.293l-1.414 7.071c-.2.98-.72 1.22-1.463.76l-2.033-1.5-.982.946c-.108.108-.2.2-.41.2l.146-2.07 5.03-4.54c.22-.2-.048-.31-.34-.11l-6.22 3.91-2.13-.67c-.463-.14-.472-.46.096-.68l8.34-3.22c.39-.14.73.09.61.68z"/></svg>
+        Перейти в Telegram-бот @grabtoybot
+      </a>
+      <p class="mt-4 text-slate-600">Заявки принимаются только через Telegram-бота.</p>
+    </div>
+  </section>
+
+  <!-- Контакты и карта -->
+  <section class="py-16 bg-white" id="contacts">
+    <div class="mx-auto max-w-4xl px-4 grid gap-8 md:grid-cols-2 items-center">
+      <div>
+        <h2 class="text-2xl font-bold mb-4 text-brand-700">Контакты</h2>
+        <ul class="text-lg text-slate-700 space-y-2 mb-4">
+          <li><span class="font-bold">Дмитрий</span>, г. Ярославль</li>
+          <li>Телефон: <a href="tel:+79201013555" class="text-brand-700 hover:underline">+7 (920) 101-35-55</a></li>
+          <li>Telegram: <a href="https://t.me/igruchka_opt" target="_blank" class="text-brand-700 hover:underline">@igruchka_opt</a></li>
+        </ul>
+        <a href="#form" class="inline-flex items-center rounded-2xl border border-slate-300 px-5 py-3 hover:bg-white">Оставить заявку</a>
+      </div>
+      <div class="rounded-3xl overflow-hidden shadow">
+        <iframe title="Карта Ярославля" width="100%" height="360" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=39.73%2C57.55%2C40.06%2C57.70&layer=mapnik&marker=57.6266%2C39.8938"></iframe>
+        <div class="bg-white p-3 text-sm text-slate-600"><a class="text-brand-700 hover:underline" target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=57.6266&mlon=39.8938#map=12/57.6266/39.8938">Открыть карту в OSM</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="border-t border-slate-200">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-slate-600">© <span id="year"></span> Хватайка. Игрушки для автоматов — оптом.</p>
+      <nav class="flex items-center gap-4 text-sm">
+        <a href="#about" class="hover:underline">О компании</a>
+        <a href="#terms" class="hover:underline">Условия</a>
+        <a href="#contacts" class="hover:underline">Контакты</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Generate gallery items from source/images/img_001.jpg ... img_034.jpg
+    const grid = document.getElementById('grid');
+    const pad = (n) => String(n).padStart(3, '0');
+    for (let i = 1; i <= 34; i++) {
+      const num = pad(i);
+      const card = document.createElement('div');
+      card.className = 'group rounded-3xl overflow-hidden bg-white shadow hover:shadow-lg transition';
+      card.innerHTML = `
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="source/images/img_${num}.jpg" alt="Игрушка №${i}" class="h-full w-full object-cover group-hover:scale-105 transition" onerror="this.closest('.group').classList.add('hidden')" />
+        </div>
+        <div class="p-4 flex items-center justify-between gap-2">
+          <div>
+            <h3 class="font-semibold">Игрушка №${i}</h3>
+            <p class="text-sm text-slate-600">Демо-карточка</p>
+          </div>
+          <a href="#form" class="inline-flex items-center rounded-xl bg-brand-600 px-3 py-2 text-white hover:bg-brand-700">Заказать</a>
+        </div>
+      `;
+      grid.appendChild(card);
+    }
+
+    // Simple form validation + toast
+    const form = document.getElementById('leadForm');
+    const toast = document.getElementById('toast');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if (!name || !phone) {
+        alert('Пожалуйста, укажите имя и телефон');
+        return;
+      }
+      const phoneOk = /^\+?\d[\d\s\-()]{9,}$/.test(phone);
+      const emailOk = !email || /.+@.+\..+/.test(email);
+      if (!phoneOk) { alert('Проверьте номер телефона'); return; }
+      if (!emailOk) { alert('Проверьте email'); return; }
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2600);
+      form.reset();
+      // TODO: заменить на реальную отправку (бот/бекенд)
+    });
+  </script>
+</body>
+</html>
