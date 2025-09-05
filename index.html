@@ -44,6 +44,76 @@
             .card-animate.left.in-view {
                 transform: translateX(0);
             }
+            
+            /* Исправления для карусели на мобильных */
+            .carousel {
+                overflow: hidden;
+                width: 100%;
+                padding: 0;
+            }
+            
+            .carousel-container {
+                display: flex;
+                transition: transform 0.5s ease;
+                padding: 0;
+            }
+            
+            .carousel-item {
+                flex: 0 0 100%;
+                margin: 0;
+                scroll-snap-align: center;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+            
+            .reviews-carousel {
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .reviews-container {
+                display: flex;
+                transition: transform 0.5s ease;
+                padding: 0;
+            }
+            
+            .review-item {
+                flex: 0 0 100%;
+                margin: 0;
+                scroll-snap-align: center;
+                padding: 15px;
+                box-sizing: border-box;
+            }
+            
+            /* Центрирование карусели */
+            .carousel-container,
+            .reviews-container {
+                justify-content: flex-start;
+            }
+            
+            .carousel-item {
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            
+            .carousel-item img {
+                height: 180px;
+                object-fit: cover;
+            }
+            
+            .carousel-item-content {
+                padding: 12px;
+            }
+            
+            .carousel-item-content h3 {
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+            }
+            
+            .carousel-controls {
+                margin-top: 15px;
+            }
         }
         :root {
             --primary-color: #FF6B8B;
@@ -610,49 +680,6 @@
                 margin: 5px 0;
             }
 
-            .carousel-item {
-                flex: 0 0 100%;
-                margin: 0 0 20px 0;
-                /* Убираем горизонтальные margin для мобильных */
-                margin-left: 0;
-                margin-right: 0;
-            }
-
-            .carousel-container {
-                padding: 0;
-            }
-
-            .review-item {
-                padding: 12px 8px;
-                /* Убираем горизонтальные margin для отзывов */
-                margin: 0 0 20px 0;
-            }
-
-            .reviews-container {
-                padding: 0;
-            }
-
-            .carousel-item-content {
-                padding: 10px 8px;
-            }
-
-            .carousel-item-content h3 {
-                font-size: 1.1rem;
-                margin-bottom: 8px;
-            }
-
-            .carousel-item-content p {
-                font-size: 0.95rem;
-                margin-bottom: 6px;
-            }
-
-            .carousel-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 1rem;
-                margin: 0 4px;
-            }
-
             .features-grid,
             .conditions-grid,
             .advantages-grid {
@@ -976,21 +1003,9 @@
     </footer>
 
     <script>
-        // Анимация карточек на мобильных экранах (все основные секции)
+        // Анимация карточек на мобильных экранах (только для остальных секций, кроме каруселей)
         function addMobileCardAnimations() {
             if (window.innerWidth > 576) return;
-            // Каталог
-            const catalogCards = document.querySelectorAll('.carousel-item');
-            catalogCards.forEach((card, idx) => {
-                card.classList.add('card-animate');
-                if (idx % 2 === 0) card.classList.add('left');
-            });
-            // Отзывы
-            const reviewCards = document.querySelectorAll('.review-item');
-            reviewCards.forEach((card, idx) => {
-                card.classList.add('card-animate');
-                if (idx % 2 === 0) card.classList.add('left');
-            });
             // Преимущества
             const featureCards = document.querySelectorAll('.feature-item');
             featureCards.forEach((card, idx) => {
@@ -1018,7 +1033,7 @@
                     }
                 });
             }, { threshold: 0.2 });
-            [...catalogCards, ...reviewCards, ...featureCards, ...conditionCards, ...advantageCards].forEach(card => observer.observe(card));
+            [...featureCards, ...conditionCards, ...advantageCards].forEach(card => observer.observe(card));
         }
 
         // Мобильное меню
@@ -1046,28 +1061,77 @@
             catalogCarousel.appendChild(item);
         }
         
-        // Клонируем первые и последние элементы для бесконечной прокрутки
-        const catalogItems = catalogCarousel.querySelectorAll('.carousel-item');
-        const firstItemClone = catalogItems[0].cloneNode(true);
-        const secondItemClone = catalogItems[1].cloneNode(true);
-        const lastItemClone = catalogItems[catalogItems.length - 1].cloneNode(true);
-        const secondLastItemClone = catalogItems[catalogItems.length - 2].cloneNode(true);
+        // Переменные для управления каруселью
+        let catalogItemWidth;
+        let catalogPosition;
+        let catalogAutoScroll;
         
-        catalogCarousel.appendChild(firstItemClone);
-        catalogCarousel.appendChild(secondItemClone);
-        catalogCarousel.insertBefore(lastItemClone, catalogItems[0]);
-        catalogCarousel.insertBefore(secondLastItemClone, catalogItems[0]);
-        
-        let catalogPosition = - (document.querySelector('.carousel-item').offsetWidth + 20) * 2;
-        const catalogItemWidth = document.querySelector('.carousel-item').offsetWidth + 20;
-        catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
-        
-        // Автопрокрутка каталога
-        let catalogAutoScroll = setInterval(() => {
-            catalogPosition -= catalogItemWidth;
-            catalogCarousel.style.transition = 'transform 0.5s ease';
+        // Функция инициализации карусели
+        function initCatalogCarousel() {
+            const catalogItems = catalogCarousel.querySelectorAll('.carousel-item');
+            
+            // Удаляем ранее созданные клоны, если есть
+            const clones = catalogCarousel.querySelectorAll('.cloned');
+            clones.forEach(clone => clone.remove());
+            
+            if (window.innerWidth > 576) {
+                // Для десктопа - клонируем элементы для бесконечной прокрутки
+                const firstItemClone = catalogItems[0].cloneNode(true);
+                const secondItemClone = catalogItems[1].cloneNode(true);
+                const lastItemClone = catalogItems[catalogItems.length - 1].cloneNode(true);
+                const secondLastItemClone = catalogItems[catalogItems.length - 2].cloneNode(true);
+                
+                firstItemClone.classList.add('cloned');
+                secondItemClone.classList.add('cloned');
+                lastItemClone.classList.add('cloned');
+                secondLastItemClone.classList.add('cloned');
+                
+                catalogCarousel.appendChild(firstItemClone);
+                catalogCarousel.appendChild(secondItemClone);
+                catalogCarousel.insertBefore(lastItemClone, catalogItems[0]);
+                catalogCarousel.insertBefore(secondLastItemClone, catalogItems[0]);
+                
+                catalogItemWidth = document.querySelector('.carousel-item').offsetWidth + 20;
+                catalogPosition = -catalogItemWidth * 2;
+            } else {
+                // Для мобильных - простая карусель
+                catalogItemWidth = document.querySelector('.carousel-item').offsetWidth;
+                catalogPosition = 0;
+            }
+            
             catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
-        }, 3000);
+            
+            // Запускаем автопрокрутку
+            startCatalogAutoScroll();
+        }
+        
+        // Функция запуска автопрокрутки каталога
+        function startCatalogAutoScroll() {
+            if (catalogAutoScroll) clearInterval(catalogAutoScroll);
+            
+            catalogAutoScroll = setInterval(() => {
+                if (window.innerWidth > 576) {
+                    // Бесконечная прокрутка для десктопа
+                    catalogPosition -= catalogItemWidth;
+                    catalogCarousel.style.transition = 'transform 0.5s ease';
+                    catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+                } else {
+                    // Обычная прокрутка для мобильных
+                    const totalItems = catalogCarousel.querySelectorAll('.carousel-item').length;
+                    
+                    if (Math.abs(catalogPosition) < catalogItemWidth * (totalItems - 1)) {
+                        catalogPosition -= catalogItemWidth;
+                        catalogCarousel.style.transition = 'transform 0.5s ease';
+                        catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+                    } else {
+                        // Достигнут конец - возвращаемся к началу
+                        catalogPosition = 0;
+                        catalogCarousel.style.transition = 'transform 0.5s ease';
+                        catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+                    }
+                }
+            }, 3000);
+        }
         
         // Останавливаем автопрокрутку при наведении
         catalogCarousel.addEventListener('mouseenter', () => {
@@ -1076,58 +1140,78 @@
         
         // Возобновляем автопрокрутку при уходе курсора
         catalogCarousel.addEventListener('mouseleave', () => {
-            catalogAutoScroll = setInterval(() => {
-                catalogPosition -= catalogItemWidth;
-                catalogCarousel.style.transition = 'transform 0.5s ease';
-                catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
-            }, 3000);
+            startCatalogAutoScroll();
         });
         
+        // Обработчики для кнопок навигации
         nextBtn.addEventListener('click', function() {
             clearInterval(catalogAutoScroll);
-            catalogPosition -= catalogItemWidth;
+            
+            if (window.innerWidth > 576) {
+                // Для десктопа
+                catalogPosition -= catalogItemWidth;
+            } else {
+                // Для мобильных
+                const totalItems = catalogCarousel.querySelectorAll('.carousel-item').length;
+                
+                if (Math.abs(catalogPosition) < catalogItemWidth * (totalItems - 1)) {
+                    catalogPosition -= catalogItemWidth;
+                } else {
+                    catalogPosition = 0;
+                }
+            }
+            
             catalogCarousel.style.transition = 'transform 0.5s ease';
             catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
             
             // Перезапускаем автопрокрутку после клика
             setTimeout(() => {
-                catalogAutoScroll = setInterval(() => {
-                    catalogPosition -= catalogItemWidth;
-                    catalogCarousel.style.transition = 'transform 0.5s ease';
-                    catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
-                }, 3000);
+                startCatalogAutoScroll();
             }, 5000);
         });
         
         prevBtn.addEventListener('click', function() {
             clearInterval(catalogAutoScroll);
-            catalogPosition += catalogItemWidth;
+            
+            if (window.innerWidth > 576) {
+                // Для десктопа
+                catalogPosition += catalogItemWidth;
+            } else {
+                // Для мобильных
+                if (catalogPosition < 0) {
+                    catalogPosition += catalogItemWidth;
+                } else {
+                    // Переходим к последнему элементу
+                    const totalItems = catalogCarousel.querySelectorAll('.carousel-item').length;
+                    catalogPosition = -catalogItemWidth * (totalItems - 1);
+                }
+            }
+            
             catalogCarousel.style.transition = 'transform 0.5s ease';
             catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
             
             // Перезапускаем автопрокрутку после клика
             setTimeout(() => {
-                catalogAutoScroll = setInterval(() => {
-                    catalogPosition -= catalogItemWidth;
-                    catalogCarousel.style.transition = 'transform 0.5s ease';
-                    catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
-                }, 3000);
+                startCatalogAutoScroll();
             }, 5000);
         });
         
+        // Обработчик для бесконечной прокрутки на десктопе
         catalogCarousel.addEventListener('transitionend', function() {
-            const totalItems = catalogCarousel.querySelectorAll('.carousel-item').length;
-            
-            if (catalogPosition <= -catalogItemWidth * (totalItems - 2)) {
-                catalogCarousel.style.transition = 'none';
-                catalogPosition = -catalogItemWidth * 2;
-                catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
-            }
-            
-            if (catalogPosition >= -catalogItemWidth) {
-                catalogCarousel.style.transition = 'none';
-                catalogPosition = -catalogItemWidth * (totalItems - 4);
-                catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+            if (window.innerWidth > 576) {
+                const totalItems = catalogCarousel.querySelectorAll('.carousel-item').length;
+                
+                if (catalogPosition <= -catalogItemWidth * (totalItems - 2)) {
+                    catalogCarousel.style.transition = 'none';
+                    catalogPosition = -catalogItemWidth * 2;
+                    catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+                }
+                
+                if (catalogPosition >= -catalogItemWidth) {
+                    catalogCarousel.style.transition = 'none';
+                    catalogPosition = -catalogItemWidth * (totalItems - 4);
+                    catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+                }
             }
         });
         
@@ -1179,24 +1263,71 @@
             reviewsCarousel.appendChild(item);
         });
         
-        // Клонируем первый и последний отзывы для бесконечной прокрутки
-        const reviewItems = reviewsCarousel.querySelectorAll('.review-item');
-        const firstReviewClone = reviewItems[0].cloneNode(true);
-        const lastReviewClone = reviewItems[reviewItems.length - 1].cloneNode(true);
+        // Переменные для управления каруселью отзывов
+        let reviewItemWidth;
+        let reviewsPosition;
+        let reviewsAutoScroll;
         
-        reviewsCarousel.appendChild(firstReviewClone);
-        reviewsCarousel.insertBefore(lastReviewClone, reviewItems[0]);
-        
-        let reviewsPosition = - (document.querySelector('.review-item').offsetWidth + 20);
-        const reviewItemWidth = document.querySelector('.review-item').offsetWidth + 20;
-        reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
-        
-        // Автопрокрутка отзывов
-        let reviewsAutoScroll = setInterval(() => {
-            reviewsPosition -= reviewItemWidth;
-            reviewsCarousel.style.transition = 'transform 0.5s ease';
+        // Функция инициализации карусели отзывов
+        function initReviewsCarousel() {
+            const reviewItems = reviewsCarousel.querySelectorAll('.review-item');
+            
+            // Удаляем ранее созданные клоны, если есть
+            const clones = reviewsCarousel.querySelectorAll('.cloned');
+            clones.forEach(clone => clone.remove());
+            
+            if (window.innerWidth > 576) {
+                // Для десктопа - клонируем элементы для бесконечной прокрутки
+                const firstReviewClone = reviewItems[0].cloneNode(true);
+                const lastReviewClone = reviewItems[reviewItems.length - 1].cloneNode(true);
+                
+                firstReviewClone.classList.add('cloned');
+                lastReviewClone.classList.add('cloned');
+                
+                reviewsCarousel.appendChild(firstReviewClone);
+                reviewsCarousel.insertBefore(lastReviewClone, reviewItems[0]);
+                
+                reviewItemWidth = document.querySelector('.review-item').offsetWidth + 20;
+                reviewsPosition = -reviewItemWidth;
+            } else {
+                // Для мобильных - простая карусель
+                reviewItemWidth = document.querySelector('.review-item').offsetWidth;
+                reviewsPosition = 0;
+            }
+            
             reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
-        }, 4000);
+            
+            // Запускаем автопрокрутку
+            startReviewsAutoScroll();
+        }
+        
+        // Функция запуска автопрокрутки отзывов
+        function startReviewsAutoScroll() {
+            if (reviewsAutoScroll) clearInterval(reviewsAutoScroll);
+            
+            reviewsAutoScroll = setInterval(() => {
+                if (window.innerWidth > 576) {
+                    // Бесконечная прокрутка для десктопа
+                    reviewsPosition -= reviewItemWidth;
+                    reviewsCarousel.style.transition = 'transform 0.5s ease';
+                    reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+                } else {
+                    // Обычная прокрутка для мобильных
+                    const totalItems = reviewsCarousel.querySelectorAll('.review-item').length;
+                    
+                    if (Math.abs(reviewsPosition) < reviewItemWidth * (totalItems - 1)) {
+                        reviewsPosition -= reviewItemWidth;
+                        reviewsCarousel.style.transition = 'transform 0.5s ease';
+                        reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+                    } else {
+                        // Достигнут конец - возвращаемся к началу
+                        reviewsPosition = 0;
+                        reviewsCarousel.style.transition = 'transform 0.5s ease';
+                        reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+                    }
+                }
+            }, 4000);
+        }
         
         // Останавливаем автопрокрутку при наведении
         reviewsCarousel.addEventListener('mouseenter', () => {
@@ -1205,59 +1336,90 @@
         
         // Возобновляем автопрокрутку при уходе курсора
         reviewsCarousel.addEventListener('mouseleave', () => {
-            reviewsAutoScroll = setInterval(() => {
-                reviewsPosition -= reviewItemWidth;
-                reviewsCarousel.style.transition = 'transform 0.5s ease';
-                reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
-            }, 4000);
+            startReviewsAutoScroll();
         });
         
         reviewsNextBtn.addEventListener('click', function() {
             clearInterval(reviewsAutoScroll);
-            reviewsPosition -= reviewItemWidth;
+            
+            if (window.innerWidth > 576) {
+                // Для десктопа
+                reviewsPosition -= reviewItemWidth;
+            } else {
+                // Для мобильных
+                const totalItems = reviewsCarousel.querySelectorAll('.review-item').length;
+                
+                if (Math.abs(reviewsPosition) < reviewItemWidth * (totalItems - 1)) {
+                    reviewsPosition -= reviewItemWidth;
+                } else {
+                    reviewsPosition = 0;
+                }
+            }
+            
             reviewsCarousel.style.transition = 'transform 0.5s ease';
             reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
             
             // Перезапускаем автопрокрутку после клика
             setTimeout(() => {
-                reviewsAutoScroll = setInterval(() => {
-                    reviewsPosition -= reviewItemWidth;
-                    reviewsCarousel.style.transition = 'transform 0.5s ease';
-                    reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
-                }, 4000);
+                startReviewsAutoScroll();
             }, 6000);
         });
         
         reviewsPrevBtn.addEventListener('click', function() {
             clearInterval(reviewsAutoScroll);
-            reviewsPosition += reviewItemWidth;
+            
+            if (window.innerWidth > 576) {
+                // Для десктопа
+                reviewsPosition += reviewItemWidth;
+            } else {
+                // Для мобильных
+                if (reviewsPosition < 0) {
+                    reviewsPosition += reviewItemWidth;
+                } else {
+                    // Переходим к последнему элементу
+                    const totalItems = reviewsCarousel.querySelectorAll('.review-item').length;
+                    reviewsPosition = -reviewItemWidth * (totalItems - 1);
+                }
+            }
+            
             reviewsCarousel.style.transition = 'transform 0.5s ease';
             reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
             
             // Перезапускаем автопрокрутку после клика
             setTimeout(() => {
-                reviewsAutoScroll = setInterval(() => {
-                    reviewsPosition -= reviewItemWidth;
-                    reviewsCarousel.style.transition = 'transform 0.5s ease';
-                    reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
-                }, 4000);
+                startReviewsAutoScroll();
             }, 6000);
         });
         
+        // Обработчик для бесконечной прокрутки на десктопе
         reviewsCarousel.addEventListener('transitionend', function() {
-            const totalReviews = reviewsCarousel.querySelectorAll('.review-item').length;
-            
-            if (reviewsPosition <= -reviewItemWidth * (totalReviews - 1)) {
-                reviewsCarousel.style.transition = 'none';
-                reviewsPosition = -reviewItemWidth;
-                reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+            if (window.innerWidth > 576) {
+                const totalReviews = reviewsCarousel.querySelectorAll('.review-item').length;
+                
+                if (reviewsPosition <= -reviewItemWidth * (totalReviews - 1)) {
+                    reviewsCarousel.style.transition = 'none';
+                    reviewsPosition = -reviewItemWidth;
+                    reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+                }
+                
+                if (reviewsPosition >= 0) {
+                    reviewsCarousel.style.transition = 'none';
+                    reviewsPosition = -reviewItemWidth * (totalReviews - 2);
+                    reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+                }
             }
-            
-            if (reviewsPosition >= 0) {
-                reviewsCarousel.style.transition = 'none';
-                reviewsPosition = -reviewItemWidth * (totalReviews - 2);
-                reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
-            }
+        });
+        
+        // Инициализация каруселей при загрузке
+        window.addEventListener('load', function() {
+            initCatalogCarousel();
+            initReviewsCarousel();
+        });
+        
+        // Обновление каруселей при изменении размера окна
+        window.addEventListener('resize', function() {
+            initCatalogCarousel();
+            initReviewsCarousel();
         });
         
         // Инициализация карты
@@ -1322,4 +1484,4 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/номер_счетчика" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 </body>
-</html> 
+</html>

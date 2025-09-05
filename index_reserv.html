@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>GrabToy — Мягкие игрушки оптом для автоматов «Хватайка» и магазинов</title>
+	<meta name="description" content="Мягкие игрушки оптом от 100 руб. Размер 20–30 см. Доставка по всей России, Беларуси и Казахстану. Идеально для автоматов «Хватайка». Сертификаты, отзывы, Telegram, Avito.">
+	<meta name="yandex-verification" content="yandex_verification_token_here">
+	<meta name="robots" content="index, follow">
+	<link rel="icon" href="source/images/logo.jpg">
+	<link rel="canonical" href="https://grabtoy.ru/">
+	<meta property="og:title" content="GrabToy — Мягкие игрушки оптом для автоматов «Хватайка» и магазинов">
+	<meta property="og:description" content="Игрушки оптом от 100 руб. Каталог, отзывы, условия, доставка по РФ, Беларусь, Казахстан. Telegram, Avito.">
+	<meta property="og:image" content="https://grabtoy.ru/source/images/logo.jpg">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://grabtoy.ru/">
+	<script src="https://unpkg.com/@phosphor-icons/web"></script>
+	<style>
+		:root {
+			--brand: #f43f5e;
+			--brand-dark: #be185d;
+			--accent: #f59e42;
+			--bg: #f8fafc;
+			--text: #22223b;
+			--radius: 1.7rem;
+			--shadow: 0 4px 24px #0001;
+			--transition: .25s cubic-bezier(.4,1,.4,1);
+		}
+		html { box-sizing: border-box; }
+		*,*:before,*:after { box-sizing: inherit; }
+		body {
+			margin: 0; font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; scroll-behavior: smooth;
+		}
+		header {
+			background: #fff; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 10; transition: box-shadow var(--transition);
+			animation: fadeInDown .8s cubic-bezier(.4,1,.4,1);
+		}
+		@keyframes fadeInDown { from { opacity:0; transform:translateY(-40px);} to { opacity:1; transform:none; } }
+		.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+		.hero {
+			display: flex; flex-direction: column; align-items: center; justify-content: center;
+			min-height: 70vh; text-align: center; background: linear-gradient(120deg, var(--brand), var(--accent)); color: #fff;
+			border-radius: 0 0 var(--radius) var(--radius); margin-bottom: 2.5rem; position: relative; overflow: hidden;
+			animation: fadeIn 1.2s cubic-bezier(.4,1,.4,1);
+		}
+		@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+		.hero-logo {
+			width: 110px; height: 110px; border-radius: 50%; background: #fff; margin-bottom: 1.2rem; box-shadow: 0 4px 24px #0002; border: 4px solid #fff; object-fit: cover;
+			animation: popIn .8s .2s cubic-bezier(.4,1,.4,1) backwards;
+		}
+		@keyframes popIn { from { opacity:0; transform:scale(.7);} to { opacity:1; transform:none; } }
+		.hero-title { font-size: 2.5rem; font-weight: 900; margin-bottom: 1.1rem; letter-spacing: -1px; text-shadow: 0 2px 8px #0002; }
+		.hero-sub { font-size: 1.25rem; margin-bottom: 2rem; opacity: .95; }
+		.hero-cta { display: flex; flex-wrap: wrap; gap: 1.1rem; justify-content: center; margin-bottom: 2.2rem; }
+		.btn {
+			display: inline-flex; align-items: center; gap: 0.6em; padding: 1em 1.7em; border-radius: 2em;
+			font-weight: 700; font-size: 1.08rem; border: none; cursor: pointer; text-decoration: none;
+			background: var(--brand); color: #fff; box-shadow: 0 2px 8px #0001; transition: background var(--transition), transform var(--transition);
+			will-change: background,transform;
+			position: relative; overflow: hidden;
+		}
+		.btn svg { width: 1.3em; height: 1.3em; vertical-align: middle; }
+		.btn:hover, .btn:focus { background: var(--brand-dark); transform: translateY(-2px) scale(1.04); }
+		.btn.whatsapp { background: #25d366; }
+		.btn.whatsapp:hover { background: #1ebe57; }
+		.btn.avito { background: #4f8cff; }
+		.btn.avito:hover { background: #2563eb; }
+		.btn.tg { background: #229ed9; }
+		.btn.tg:hover { background: #176cae; }
+		.btn.cta { background: var(--accent); color: #fff; }
+		.btn.cta:hover { background: #f59e42cc; color: #fff; }
+		.features {
+			display: flex; flex-wrap: wrap; gap: 1.7rem; justify-content: center; margin: 2.5rem 0 2.2rem;
+			animation: fadeIn .8s .2s cubic-bezier(.4,1,.4,1) backwards;
+		}
+		.feature {
+			background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.7rem 1.3rem; flex: 1 1 220px; min-width: 220px; max-width: 320px; display: flex; align-items: flex-start; gap: 1.1rem; position: relative; transition: box-shadow var(--transition), transform var(--transition);
+			opacity: 0; transform: translateY(30px); animation: fadeUp .7s cubic-bezier(.4,1,.4,1) forwards;
+		}
+		.feature:nth-child(1) { animation-delay: .1s; }
+		.feature:nth-child(2) { animation-delay: .2s; }
+		.feature:nth-child(3) { animation-delay: .3s; }
+		.feature:nth-child(4) { animation-delay: .4s; }
+		.feature:nth-child(5) { animation-delay: .5s; }
+		.feature:nth-child(6) { animation-delay: .6s; }
+		@keyframes fadeUp { to { opacity:1; transform:none; } }
+		.feature-icon { font-size: 2.2rem; color: var(--brand); flex-shrink: 0; }
+		.feature strong { color: var(--brand-dark); }
+		.section-title { font-size: 1.7rem; font-weight: 800; margin: 2.7rem 0 1.2rem; text-align: center; color: var(--brand-dark); letter-spacing: -1px; }
+		.section-sub { text-align: center; color: #555; margin-bottom: 2.2rem; }
+		.carousel {
+			position: relative; overflow: hidden; width: 100%; max-width: 950px; margin: 0 auto 2.5rem; border-radius: var(--radius); background: #fff; box-shadow: var(--shadow);
+			animation: fadeIn .8s .2s cubic-bezier(.4,1,.4,1) backwards;
+		}
+		.carousel-track {
+			display: flex; transition: transform 0.7s cubic-bezier(.4,1,.4,1);
+		}
+		.carousel-slide {
+			min-width: 320px; max-width: 320px; flex: 0 0 320px; padding: 1.1rem; box-sizing: border-box; text-align: center; opacity: 0.98;
+			transition: box-shadow var(--transition), transform var(--transition);
+		}
+		.carousel-slide img { width: 100%; height: 230px; object-fit: cover; border-radius: 1.1rem; box-shadow: 0 2px 8px #0001; }
+		.carousel-controls {
+			position: absolute; top: 50%; left: 0; right: 0; display: flex; justify-content: space-between; transform: translateY(-50%); pointer-events: none;
+		}
+		.carousel-btn {
+			background: #fff; border: none; border-radius: 50%; width: 2.7rem; height: 2.7rem; font-size: 1.6rem; color: var(--brand); box-shadow: 0 2px 8px #0002; cursor: pointer; pointer-events: all; display: flex; align-items: center; justify-content: center; transition: background var(--transition), color var(--transition);
+		}
+		.carousel-btn:hover { background: var(--brand); color: #fff; }
+		.carousel-indicators {
+			display: flex; gap: 0.5em; justify-content: center; margin: 0.7em 0 1.2em; }
+		.carousel-indicator {
+			width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background .2s; cursor: pointer; border: none;
+		}
+		.carousel-indicator.active { background: var(--brand); }
+		@media (max-width: 900px) {
+			.carousel-slide, .carousel-slide img { min-width: 80vw; max-width: 80vw; height: 160px; }
+			.features { flex-direction: column; align-items: stretch; }
+		}
+		.reviews-carousel {
+			position: relative; overflow: hidden; width: 100%; max-width: 700px; margin: 0 auto 2.5rem; border-radius: var(--radius); background: #fff; box-shadow: var(--shadow);
+			animation: fadeIn .8s .2s cubic-bezier(.4,1,.4,1) backwards;
+		}
+		.reviews-track {
+			display: flex; transition: transform 0.7s cubic-bezier(.4,1,.4,1);
+		}
+		.review-slide {
+			min-width: 100%; box-sizing: border-box; padding: 2.2rem 1.7rem; text-align: left; display: flex; flex-direction: column; gap: 1.1rem; opacity: 0.98;
+			transition: box-shadow var(--transition), transform var(--transition);
+		}
+		.review-text { font-size: 1.13rem; color: #333; }
+		.review-author { font-size: 1.01rem; color: #888; font-style: italic; }
+		.reviews-controls {
+			position: absolute; top: 50%; left: 0; right: 0; display: flex; justify-content: space-between; transform: translateY(-50%); pointer-events: none;
+		}
+		.reviews-btn {
+			background: #fff; border: none; border-radius: 50%; width: 2.7rem; height: 2.7rem; font-size: 1.6rem; color: var(--brand); box-shadow: 0 2px 8px #0002; cursor: pointer; pointer-events: all; display: flex; align-items: center; justify-content: center; transition: background var(--transition), color var(--transition);
+		}
+		.reviews-btn:hover { background: var(--brand); color: #fff; }
+		.reviews-indicators {
+			display: flex; gap: 0.5em; justify-content: center; margin: 0.7em 0 1.2em; }
+		.reviews-indicator {
+			width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background .2s; cursor: pointer; border: none;
+		}
+		.reviews-indicator.active { background: var(--brand); }
+		.infographics {
+			display: flex; flex-wrap: wrap; gap: 2.2rem; justify-content: center; margin: 2.5rem 0 2.2rem;
+			animation: fadeIn .8s .2s cubic-bezier(.4,1,.4,1) backwards;
+		}
+		.infographic {
+			background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.7rem 1.3rem; flex: 1 1 220px; min-width: 220px; max-width: 320px; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; position: relative; transition: box-shadow var(--transition), transform var(--transition);
+			opacity: 0; transform: translateY(30px); animation: fadeUp .7s cubic-bezier(.4,1,.4,1) forwards;
+		}
+		.infographic:nth-child(1) { animation-delay: .1s; }
+		.infographic:nth-child(2) { animation-delay: .2s; }
+		.infographic:nth-child(3) { animation-delay: .3s; }
+		.infographic-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 0.5em; }
+		.faq {
+			background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); max-width: 700px; margin: 2.5rem auto; padding: 2.2rem 1.7rem;
+			animation: fadeIn .8s .2s cubic-bezier(.4,1,.4,1) backwards;
+		}
+		.faq-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.2rem; color: var(--brand-dark); }
+		.faq-list { list-style: none; padding: 0; margin: 0; }
+		.faq-q { font-weight: 700; margin-top: 1.1em; cursor: pointer; position: relative; }
+		.faq-q:after { content: '+'; position: absolute; right: 0; color: var(--brand); font-size: 1.2em; transition: transform .2s; }
+		.faq-q.open:after { content: '-'; }
+		.faq-a { max-height: 0; overflow: hidden; transition: max-height .3s; color: #444; font-weight: 400; }
+		.faq-q.open + .faq-a { max-height: 200px; margin-bottom: 1em; }
+		.contacts-block { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 2.2rem; margin: 2.5rem auto; max-width: 600px; }
+		.contacts-list { list-style: none; padding: 0; margin: 0; }
+		.contacts-list li { margin-bottom: 0.7em; font-size: 1.1em; }
+		.footer { text-align: center; color: #888; font-size: 1em; margin: 2.5rem 0 1.2rem; }
+		.messenger-links { display: flex; gap: 1rem; justify-content: center; margin: 1.5rem 0; }
+		.messenger-links a { display: inline-flex; align-items: center; gap: 0.5em; font-weight: 600; text-decoration: none; color: var(--brand); background: #fff; border-radius: 2em; padding: 0.7em 1.3em; box-shadow: 0 2px 8px #0001; transition: background .2s; }
+		.messenger-links a:hover { background: var(--brand); color: #fff; }
+		@media (max-width: 700px) {
+			.carousel-slide, .carousel-slide img { min-width: 90vw; max-width: 90vw; height: 160px; }
+			.features, .infographics { flex-direction: column; align-items: stretch; }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="container" style="display:flex;align-items:center;gap:1.2rem;min-height:70px;">
+			<img src="source/images/logo.jpg" alt="GrabToy логотип" class="hero-logo" style="margin:0;">
+			<span style="font-size:1.5rem;font-weight:700;color:var(--brand-dark);">GrabToy</span>
+		</div>
+	</header>
+
+	<!-- Hero -->
+	<section class="hero">
+		<img src="source/images/logo.jpg" alt="Логотип" class="hero-logo">
+		<div class="hero-title">Мягкие игрушки оптом для автоматов «Хватайка» и магазинов</div>
+		<div class="hero-sub">Размер 20–30 см • от 100 ₽ за штуку • доставка по всей России, Беларуси и Казахстану</div>
+		<div class="hero-cta">
+			<a href="https://t.me/igruchka_opt" class="btn tg" target="_blank"><i class="ph ph-paper-plane-right"></i> Telegram</a>
+			<a href="https://wa.me/79201013555" class="btn whatsapp" target="_blank"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a>
+			<a href="https://t.me/igruchka_opt" class="btn tg" target="_blank"><i class="ph ph-users"></i> Канал Telegram</a>
+			<a href="https://www.avito.ru/yaroslavl/tovary_dlya_detey_i_igrushki/igrushki_optom_dlya_apparata_hvatayka_miks-premium_4367175992?utm_campaign=native&utm_medium=item_page_android&utm_source=soc_sharing_seller" class="btn avito" target="_blank"><i class="ph ph-shopping-bag"></i> Avito</a>
+			<a href="#faq" class="btn cta">Частые вопросы</a>
+		</div>
+		<div style="font-size:1.1rem;font-weight:600;">Игрушки оптом от 100 руб</div>
+	</section>
+
+	<!-- Инфографика "Как мы работаем" -->
+	<section class="container">
+		<div class="section-title">Как мы работаем</div>
+		<div class="infographics">
+			<div class="infographic"><span class="infographic-icon"><i class="ph ph-magnifying-glass"></i></span>Вы выбираете количество</div>
+			<div class="infographic"><span class="infographic-icon"><i class="ph ph-credit-card"></i></span>Оплачиваете удобным способом</div>
+			<div class="infographic"><span class="infographic-icon"><i class="ph ph-truck"></i></span>Мы отправляем заказ в ваш город</div>
+		</div>
+	</section>
+
+	<!-- Преимущества -->
+	<section class="container">
+		<div class="section-title">Почему выбирают нас?</div>
+		<div class="features">
+			<div class="feature"><span class="feature-icon"><i class="ph ph-currency-ruble"></i></span>Оптовые цены напрямую с фабрик</div>
+			<div class="feature"><span class="feature-icon"><i class="ph ph-puzzle-piece"></i></span>Игрушки оптимального размера 20–30 см</div>
+			<div class="feature"><span class="feature-icon"><i class="ph ph-certificate"></i></span>Сертификаты качества и аккуратные швы</div>
+			<div class="feature"><span class="feature-icon"><i class="ph ph-truck"></i></span>Быстрая доставка по всей России (1–4 дня)</div>
+			<div class="feature"><span class="feature-icon"><i class="ph ph-headset"></i></span>Поддержка в Telegram 24/7</div>
+			<div class="feature"><span class="feature-icon"><i class="ph ph-cube"></i></span>Более 500 моделей в наличии</div>
+		</div>
+	</section>
+
+	<!-- Каталог-карусель -->
+	<section class="container">
+		<div class="section-title">Популярные модели</div>
+		<div class="section-sub">Яркие, мягкие и милые игрушки для детей и автоматов «Хватайка». Размер 20–30 см.</div>
+		<div class="carousel" id="catalog-carousel">
+			<div class="carousel-track" id="catalog-track"></div>
+			<div class="carousel-controls">
+				<button class="carousel-btn" id="catalog-prev"><i class="ph ph-caret-left"></i></button>
+				<button class="carousel-btn" id="catalog-next"><i class="ph ph-caret-right"></i></button>
+			</div>
+			<div class="carousel-indicators" id="catalog-indicators"></div>
+		</div>
+		<div class="messenger-links">
+			<a href="https://t.me/igruchka_opt" target="_blank"><i class="ph ph-paper-plane-right"></i> Каталог в Telegram</a>
+			<a href="https://www.avito.ru/yaroslavl/tovary_dlya_detey_i_igrushki/igrushki_optom_dlya_apparata_hvatayka_miks-premium_4367175992?utm_campaign=native&utm_medium=item_page_android&utm_source=soc_sharing_seller" target="_blank"><i class="ph ph-shopping-bag"></i> Каталог на Avito</a>
+		</div>
+	</section>
+
+	<!-- Условия работы -->
+	<section class="container">
+		<div class="section-title">Условия сотрудничества</div>
+		<ul class="contacts-list">
+			<li>Минимальный заказ — от 100 шт.</li>
+			<li>Доставка транспортной компанией в любой город РФ, Беларусь и Казахстан.</li>
+			<li>Оплата: по счёту, перевод на расчётный счёт или карту (уточнять при заказе).</li>
+			<li>Сроки отправки: 1-2 дня после оплаты (наличие товара уточняйте).</li>
+			<li>Возможен самовывоз из Ярославля (по договорённости).</li>
+			<li>Безналичный расчёт для юр. лиц и ИП.</li>
+		</ul>
+	</section>
+
+	<!-- Отзывы-карусель -->
+	<section class="container">
+		<div class="section-title">Отзывы владельцев автоматов «Хватайка»</div>
+		<div class="reviews-carousel" id="reviews-carousel">
+			<div class="reviews-track" id="reviews-track"></div>
+			<div class="reviews-controls">
+				<button class="reviews-btn" id="reviews-prev"><i class="ph ph-caret-left"></i></button>
+				<button class="reviews-btn" id="reviews-next"><i class="ph ph-caret-right"></i></button>
+			</div>
+			<div class="reviews-indicators" id="reviews-indicators"></div>
+		</div>
+		<div class="messenger-links">
+			<a href="https://www.avito.ru/yaroslavl/tovary_dlya_detey_i_igrushki/igrushki_optom_dlya_apparata_hvatayka_miks-premium_4367175992?utm_campaign=native&utm_medium=item_page_android&utm_source=soc_sharing_seller" target="_blank"><i class="ph ph-star"></i> Смотреть все отзывы на Avito</a>
+		</div>
+	</section>
+
+	<!-- Почему наши игрушки -->
+	<section class="container">
+		<div class="section-title">Почему наши игрушки идеально подходят для «Хватайки»</div>
+		<ul class="contacts-list">
+			<li>🎯 Оптимальный размер 20–30 см — игрушки легко захватываются и смотрятся объёмно.</li>
+			<li>⚖ Лёгкий вес — не перегружает автомат, удобно засыпать.</li>
+			<li>💰 Дешевле конкурентов — себестоимость игры ниже, прибыль выше.</li>
+			<li>🧸 Яркие и милые дизайны — повышают интерес игроков.</li>
+			<li>📦 Игрушки упакованы компактно — экономия на хранении и доставке.</li>
+		</ul>
+	</section>
+
+	<!-- FAQ -->
+	<section class="faq" id="faq">
+		<div class="faq-title">Частые вопросы</div>
+		<ul class="faq-list">
+			<li><div class="faq-q">Какой минимальный заказ?</div><div class="faq-a">Минимальная партия — 100 штук.</div></li>
+			<li><div class="faq-q">Как быстро отправляете?</div><div class="faq-a">Обычно отправляем в течение 1–2 дней после оплаты.</div></li>
+			<li><div class="faq-q">Какие способы оплаты?</div><div class="faq-a">Безналичный расчёт, перевод на карту, оплата по счёту.</div></li>
+			<li><div class="faq-q">Есть ли сертификаты?</div><div class="faq-a">Да, на все игрушки предоставляются сертификаты качества.</div></li>
+			<li><div class="faq-q">Можно ли самовывоз?</div><div class="faq-a">Да, самовывоз из Ярославля по договорённости.</div></li>
+			<li><div class="faq-q">Доставка в мой город?</div><div class="faq-a">Доставляем по всей России, Беларуси и Казахстану.</div></li>
+		</ul>
+	</section>
+
+	<!-- О компании -->
+	<section class="container">
+		<div class="section-title">О компании</div>
+		<div style="max-width:700px;margin:0 auto 2.5rem;line-height:1.7;font-size:1.13em;">
+			GrabToy — оптовый поставщик мягких игрушек в России. Склад в Ярославле, доставка по всей стране.<br>
+			Мы работаем напрямую с фабриками Китая, что позволяет держать лучшие цены и широкий ассортимент.<br>
+			Наши клиенты — владельцы автоматов «Хватайка», магазины игрушек, маркетплейсы и тиры.
+		</div>
+	</section>
+
+	<!-- Контакты -->
+	<section class="container">
+		<div class="section-title">Контакты</div>
+		<div class="contacts-block">
+			<ul class="contacts-list">
+				<li><b>Контактное лицо:</b> Дмитрий</li>
+				<li><b>Город:</b> Ярославль</li>
+				<li><b>Телефон, WhatsApp, Telegram:</b> <a href="https://wa.me/79201013555" target="_blank">+7 (920) 101-35-55</a></li>
+				<li><b>Telegram канал:</b> <a href="https://t.me/igruchka_opt" target="_blank">@igruchka_opt</a></li>
+				<li><b>Avito:</b> <a href="https://www.avito.ru/yaroslavl/tovary_dlya_detey_i_igrushki/igrushki_optom_dlya_apparata_hvatayka_miks-premium_4367175992?utm_campaign=native&utm_medium=item_page_android&utm_source=soc_sharing_seller" target="_blank">Смотреть на Avito</a></li>
+				<li><b>Сайт:</b> grabtoy.ru</li>
+			</ul>
+			<div class="messenger-links">
+				<a href="https://t.me/igruchka_opt" target="_blank"><i class="ph ph-paper-plane-right"></i> Написать в Telegram</a>
+				<a href="https://wa.me/79201013555" target="_blank"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a>
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer">
+		&copy; 2025 GrabToy. Все права защищены.
+	</footer>
+
+	<!-- JS для каруселей, индикаторов, FAQ, автопрокрутки -->
+	<script>
+		// Карусель каталога
+		const catalogImages = Array.from({length: 22}, (_,i) => `source/images/img_${String(i+1).padStart(3,'0')}.jpg`);
+		const catalogTrack = document.getElementById('catalog-track');
+		const catalogIndicators = document.getElementById('catalog-indicators');
+		let catalogIndex = 0;
+		const slidesToShow = window.innerWidth < 900 ? 1 : 3;
+		function renderCatalogSlides() {
+			catalogTrack.innerHTML = '';
+			catalogImages.forEach((src,i) => {
+				const slide = document.createElement('div');
+				slide.className = 'carousel-slide';
+				slide.innerHTML = `<img src="${src}" alt="Игрушка ${i+1}"><div style='margin-top:0.7em;font-weight:600;'>Игрушка №${i+1}</div>`;
+				catalogTrack.appendChild(slide);
+			});
+		}
+		function renderCatalogIndicators() {
+			catalogIndicators.innerHTML = '';
+			for(let i=0;i<=catalogImages.length-slidesToShow;i++){
+				const ind = document.createElement('button');
+				ind.className = 'carousel-indicator'+(i===catalogIndex?' active':'');
+				ind.onclick = ()=>{catalogIndex=i;updateCatalogCarousel();};
+				catalogIndicators.appendChild(ind);
+			}
+		}
+		function updateCatalogCarousel() {
+			catalogTrack.style.transform = `translateX(-${catalogIndex*320}px)`;
+			Array.from(catalogIndicators.children).forEach((el,i)=>el.classList.toggle('active',i===catalogIndex));
+		}
+		function nextCatalog(){
+			catalogIndex = Math.min(catalogImages.length-slidesToShow, catalogIndex+1); updateCatalogCarousel();
+		}
+		function prevCatalog(){
+			catalogIndex = Math.max(0, catalogIndex-1); updateCatalogCarousel();
+		}
+		document.getElementById('catalog-prev').onclick = prevCatalog;
+		document.getElementById('catalog-next').onclick = nextCatalog;
+		renderCatalogSlides();
+		renderCatalogIndicators();
+		updateCatalogCarousel();
+		let catalogAuto = setInterval(()=>{ if(document.hasFocus()) nextCatalog(); }, 4000);
+		catalogTrack.onmouseenter = ()=>clearInterval(catalogAuto);
+		catalogTrack.onmouseleave = ()=>catalogAuto = setInterval(()=>{ if(document.hasFocus()) nextCatalog(); }, 4000);
+
+		// Карусель отзывов
+		const reviews = [
+			{text: '«Игрушки 25 см идеально подходят для аппаратов. Хватаются хорошо, покупатели довольны. Продажи выросли, автомат стал приносить больше выручки.»', author: 'Иван, владелец 3 автоматов «Хватайка», Ярославль'},
+			{text: '«Берём только у этого поставщика. Размер 20–30 см самый востребованный — и в автомате смотрятся красиво, и детям нравится. Окупаемость отличная.»', author: 'Дмитрий, Казань'},
+			{text: '«Заполняем автоматы плюшевыми мишками и зайцами 20 см. Люди играют охотнее, чем с большими игрушками. За месяц автоматы окупили партию полностью.»', author: 'Олег, Москва'},
+			{text: '«Раньше заказывали у разных поставщиков — было много брака. Сейчас работаем только с QooRS: игрушки качественные, ровные, без запаха. Для «Хватайки» самое то.»', author: 'Сергей, Самара'},
+			{text: '«Очень радует быстрая доставка. Партия для наших автоматов приехала в Нижний Новгород за два дня. Игрушки упакованы идеально, сразу засыпали в аппараты.»', author: 'Влад, Нижний Новгород'},
+			{text: '«Игрушки небольшого размера — 20–25 см — оптимальны. Автомат выглядит полным, а себестоимость игры остаётся низкой. Мы увеличили маржинальность на 30%.»', author: 'Александр, Екатеринбург'},
+			{text: '«Качество очень важно: если игрушка рвётся или плохо прошита, игроки недовольны. Здесь всё супер! Берём ежемесячно партии по 500–700 штук.»', author: 'Наталья, Ростов-на-Дону'},
+			{text: '«Мы ставим автоматы в ТЦ. После замены поставщика на QooRS заметили рост интереса: игрушки яркие, милые, смотрятся круто. Игроков стало больше.»', author: 'Павел, Санкт-Петербург'},
+			{text: '«Игрушки хорошо держат форму, не деформируются после падений. Для «Хватайки» это критично. Уже полгода сотрудничаем и довольны.»', author: 'Игорь, Уфа'},
+			{text: '«Лучший вариант для владельцев автоматов: цена низкая, размер подходящий, доставка быстрая. Постоянно заказываем новые партии — ассортимент радует.»', author: 'Михаил, Краснодар'},
+			{text: '«Работаем с GrabToy уже год — всегда всё чётко, игрушки яркие, дети в восторге!»', author: 'Мария, Воронеж'},
+			{text: '«Очень удобно, что можно заказать сразу большую партию и получить за 2 дня. Спасибо!»', author: 'Елена, Нижний Новгород'}
+		];
+		const reviewsTrack = document.getElementById('reviews-track');
+		const reviewsIndicators = document.getElementById('reviews-indicators');
+		let reviewIndex = 0;
+		function renderReviewsSlides() {
+			reviewsTrack.innerHTML = '';
+			reviews.forEach(r => {
+				const slide = document.createElement('div');
+				slide.className = 'review-slide';
+				slide.innerHTML = `<div class='review-text'>${r.text}</div><div class='review-author'>${r.author}</div>`;
+				reviewsTrack.appendChild(slide);
+			});
+		}
+		function renderReviewsIndicators() {
+			reviewsIndicators.innerHTML = '';
+			for(let i=0;i<reviews.length;i++){
+				const ind = document.createElement('button');
+				ind.className = 'reviews-indicator'+(i===reviewIndex?' active':'');
+				ind.onclick = ()=>{reviewIndex=i;updateReviewsCarousel();};
+				reviewsIndicators.appendChild(ind);
+			}
+		}
+		function updateReviewsCarousel() {
+			reviewsTrack.style.transform = `translateX(-${reviewIndex*100}%)`;
+			Array.from(reviewsIndicators.children).forEach((el,i)=>el.classList.toggle('active',i===reviewIndex));
+		}
+		function nextReview(){
+			reviewIndex = Math.min(reviews.length-1, reviewIndex+1); updateReviewsCarousel();
+		}
+		function prevReview(){
+			reviewIndex = Math.max(0, reviewIndex-1); updateReviewsCarousel();
+		}
+		document.getElementById('reviews-prev').onclick = prevReview;
+		document.getElementById('reviews-next').onclick = nextReview;
+		renderReviewsSlides();
+		renderReviewsIndicators();
+		updateReviewsCarousel();
+		let reviewsAuto = setInterval(()=>{ if(document.hasFocus()) nextReview(); }, 6000);
+		reviewsTrack.onmouseenter = ()=>clearInterval(reviewsAuto);
+		reviewsTrack.onmouseleave = ()=>reviewsAuto = setInterval(()=>{ if(document.hasFocus()) nextReview(); }, 6000);
+
+		// FAQ раскрытие
+		document.querySelectorAll('.faq-q').forEach(q => {
+			q.onclick = function() {
+				this.classList.toggle('open');
+				const a = this.nextElementSibling;
+				if(this.classList.contains('open')) a.style.maxHeight = a.scrollHeight+'px';
+				else a.style.maxHeight = null;
+			};
+		});
+	</script>
+</body>
+</html>
