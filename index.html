@@ -1,178 +1,1325 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Хватайка — Игрушки для автоматов оптом</title>
-  <meta name="description" content="Оптовые поставки игрушек для автоматов Хватайка. Минимальный заказ 100 шт. Доставка по РФ, Беларуси, Казахстану.">
-  <link rel="icon" href="source/images/logo.jpg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .bg-brand-600 { background: linear-gradient(90deg,#f43f5e,#f59e42); }
-    .bg-brand-700 { background: linear-gradient(90deg,#be185d,#ea580c); }
-    .text-brand-700 { color: #be185d; }
-    .text-brand-600 { color: #f43f5e; }
-    .bg-gradient-hero { background: linear-gradient(120deg,#f43f5e 0%,#f59e42 100%); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrabToy - Мягкие игрушки оптом для автоматов «Хватайка» и магазинов</title>
+    <meta name="description" content="Мягкие игрушки оптом от 100 руб. Размер 20–30 см. Доставка по всей России, Беларуси и Казахстану. Идеально для автоматов «Хватайка».">
+    <meta name="keywords" content="мягкие игрушки оптом, игрушки для хватайки, игрушки 20-30 см, опт игрушки, автоматы хватайка">
+    
+    <!-- Яндекс.Вебмастер -->
+    <meta name="yandex-verification" content="ваш-идентификатор-верификации">
+    
+    <!-- Open Graph для соцсетей -->
+    <meta property="og:title" content="GrabToy - Мягкие игрушки оптом для автоматов «Хватайка»">
+    <meta property="og:description" content="Игрушки оптом от 100 руб. Размер 20–30 см. Доставка по всей России.">
+    <meta property="og:image" content="source/images/logo.jpg">
+    <meta property="og:url" content="https://grabtoy.ru">
+    <meta property="og:type" content="website">
+    
+    <!-- Фавикон -->
+    <link rel="icon" href="source/images/logo.jpg" type="image/jpeg">
+    
+    <!-- Подключение шрифтов -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Подключение API Яндекс.Карт -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_api_ключ&lang=ru_RU" type="text/javascript"></script>
+    
+    <style>
+        /* Анимация появления карточек на мобильных экранах */
+        @media (max-width: 576px) {
+            .card-animate {
+                opacity: 0;
+                transform: translateX(60vw);
+                transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+            }
+            .card-animate.in-view {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            .card-animate.left {
+                transform: translateX(-60vw);
+            }
+            .card-animate.left.in-view {
+                transform: translateX(0);
+            }
+        }
+        :root {
+            --primary-color: #FF6B8B;
+            --secondary-color: #6A5ACD;
+            --accent-color: #FFD700;
+            --text-color: #333;
+            --light-bg: #F9F9F9;
+            --white: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+            --feature-color-1: #A2D9A0; /* Салатовый */
+            --feature-color-2: #FFB366; /* Оранжевый */
+            --feature-color-3: #85C1E9; /* Голубой */
+            --feature-color-4: #F8C471; /* Желтый */
+            --feature-color-5: #D7BDE2; /* Фиолетовый */
+            --feature-color-6: #F5B7B1; /* Розовый */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--primary-color);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
+        
+        .btn-telegram {
+            background-color: #0088cc;
+        }
+        
+        .btn-avito {
+            background-color: #FF5C5C;
+        }
+        
+        /* Хедер */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Герой секция */
+        .hero {
+            background: linear-gradient(135deg, rgba(255,107,139,0.1) 0%, rgba(106,90,205,0.1) 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        /* Преимущества */
+        .features {
+            background-color: var(--white);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-item:nth-child(1) {
+            background-color: var(--feature-color-1);
+        }
+        
+        .feature-item:nth-child(2) {
+            background-color: var(--feature-color-2);
+        }
+        
+        .feature-item:nth-child(3) {
+            background-color: var(--feature-color-3);
+        }
+        
+        .feature-item:nth-child(4) {
+            background-color: var(--feature-color-4);
+        }
+        
+        .feature-item:nth-child(5) {
+            background-color: var(--feature-color-5);
+        }
+        
+        .feature-item:nth-child(6) {
+            background-color: var(--feature-color-6);
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Каталог - карусель */
+        .catalog {
+            background-color: var(--light-bg);
+            position: relative;
+        }
+        
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            margin: 40px 0;
+        }
+        
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            flex: 0 0 calc(25% - 20px);
+            margin: 0 10px;
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .carousel-item-content {
+            padding: 15px;
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .carousel-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .carousel-btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        .catalog-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        /* Условия работы */
+        .conditions {
+            background-color: var(--white);
+        }
+        
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .condition-item {
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 10px;
+        }
+        
+        /* Отзывы */
+        .reviews {
+            background-color: var(--light-bg);
+            position: relative;
+        }
+        
+        .reviews-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reviews-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .review-item {
+            flex: 0 0 100%;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin: 0 10px;
+        }
+        
+        .review-text {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .review-author {
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        .all-reviews-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Преимущества для хватайки */
+        .advantages {
+            background-color: var(--white);
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .advantage-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .advantage-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* О компании */
+        .about {
+            background-color: var(--light-bg);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Контакты */
+        .contacts {
+            background-color: var(--white);
+        }
+        
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Футер */
+        footer {
+            background-color: #333;
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #ccc;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-content,
+            .contacts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-item {
+                flex: 0 0 calc(33.333% - 20px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 10px 15px;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .carousel-item {
+                flex: 0 0 calc(50% - 20px);
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-buttons .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .carousel-item {
+                flex: 0 0 100%;
+                margin: 0 0 20px 0;
+                /* Убираем горизонтальные margin для мобильных */
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .carousel-container {
+                padding: 0;
+            }
+
+            .review-item {
+                padding: 12px 8px;
+                /* Убираем горизонтальные margin для отзывов */
+                margin: 0 0 20px 0;
+            }
+
+            .reviews-container {
+                padding: 0;
+            }
+
+            .carousel-item-content {
+                padding: 10px 8px;
+            }
+
+            .carousel-item-content h3 {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+            }
+
+            .carousel-item-content p {
+                font-size: 0.95rem;
+                margin-bottom: 6px;
+            }
+
+            .carousel-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+                margin: 0 4px;
+            }
+
+            .features-grid,
+            .conditions-grid,
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .review-item {
+                padding: 12px 8px;
+            }
+
+            .review-text {
+                font-size: 0.98rem;
+                margin-bottom: 8px;
+            }
+
+            .review-author {
+                font-size: 0.95rem;
+            }
+
+            /* Анимация карточек для всех секций */
+            .card-animate {
+                opacity: 0;
+                transform: translateX(60vw);
+                transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+            }
+            .card-animate.in-view {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            .card-animate.left {
+                transform: translateX(-60vw);
+            }
+            .card-animate.left.in-view {
+                transform: translateX(0);
+            }
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-  <!-- Нав-бар -->
-  <header class="bg-white shadow sticky top-0 z-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
-      <a href="#" class="flex items-center gap-3">
-        <img src="source/images/logo.jpg" alt="Логотип" class="h-12 w-12 rounded-full border border-slate-200">
-        <span class="font-bold text-xl text-brand-700">Хватайка</span>
-      </a>
-      <nav class="hidden md:flex gap-8 text-base">
-        <a href="#about" class="hover:text-brand-700">О компании</a>
-        <a href="#catalog" class="hover:text-brand-700">Каталог</a>
-        <a href="#terms" class="hover:text-brand-700">Условия</a>
-        <a href="#contacts" class="hover:text-brand-700">Контакты</a>
-      </nav>
-      <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-slate-100">
-        <svg width="28" height="28" fill="none" stroke="currentColor"><path stroke-width="2" d="M4 7h20M4 14h20M4 21h20"/></svg>
-      </button>
-    </div>
-    <nav id="mobileMenu" class="md:hidden hidden px-4 pb-4 flex flex-col gap-2 bg-white border-b">
-      <a href="#about" class="py-2 hover:text-brand-700">О компании</a>
-      <a href="#catalog" class="py-2 hover:text-brand-700">Каталог</a>
-      <a href="#terms" class="py-2 hover:text-brand-700">Условия</a>
-      <a href="#contacts" class="py-2 hover:text-brand-700">Контакты</a>
-    </nav>
-  </header>
-
-  <!-- Hero -->
-  <section class="bg-gradient-hero py-16" id="hero">
-    <div class="mx-auto max-w-4xl px-4 text-center">
-      <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-6">Игрушки для автоматов Хватайка оптом</h1>
-      <p class="text-lg text-white/90 mb-8">Минимальный заказ — <span class="font-bold">100 шт</span>. Доставка по РФ, Беларуси и Казахстану.</p>
-      <a href="#form" class="inline-flex items-center rounded-2xl bg-white text-brand-700 px-6 py-4 font-semibold text-lg shadow hover:bg-brand-600 hover:text-white transition">Оставить заявку</a>
-    </div>
-  </section>
-
-  <!-- О компании -->
-  <section class="py-16" id="about">
-    <div class="mx-auto max-w-4xl px-4 text-center">
-      <h2 class="text-2xl font-bold mb-4 text-brand-700">О компании</h2>
-      <p class="text-lg text-slate-700">Мы занимаемся оптовыми поставками игрушек для автоматов «Хватайка». В наличии более 30 видов игрушек разных размеров. Работаем с развлекательными центрами, аркадными залами, торговыми точками по всей России, Беларуси и Казахстану.</p>
-    </div>
-  </section>
-
-  <!-- Галерея товаров -->
-  <section class="py-16" id="catalog">
-    <div class="mx-auto max-w-7xl px-4">
-      <h2 class="text-2xl font-bold mb-8 text-brand-700 text-center">Каталог игрушек</h2>
-      <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-    </div>
-  </section>
-
-  <!-- Условия сотрудничества -->
-  <section class="py-16 bg-white" id="terms">
-    <div class="mx-auto max-w-4xl px-4 text-center">
-      <h2 class="text-2xl font-bold mb-4 text-brand-700">Условия сотрудничества</h2>
-      <ul class="text-lg text-slate-700 space-y-2">
-        <li>Минимальный заказ — <span class="font-bold">100 шт</span></li>
-        <li>Доставка транспортной компанией в любой город РФ, Беларусь и Казахстан</li>
-        <li>Оплата удобным способом</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Заявки только через Telegram-бота -->
-  <section class="py-16" id="form">
-    <div class="mx-auto max-w-md px-4 text-center">
-      <h2 class="text-2xl font-bold mb-4 text-brand-700">Оставить заявку</h2>
-      <a href="https://t.me/grabtoybot" target="_blank" class="inline-flex items-center gap-2 rounded-2xl bg-brand-600 text-white px-6 py-4 font-semibold text-lg shadow hover:bg-brand-700 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.707 7.293l-1.414 7.071c-.2.98-.72 1.22-1.463.76l-2.033-1.5-.982.946c-.108.108-.2.2-.41.2l.146-2.07 5.03-4.54c.22-.2-.048-.31-.34-.11l-6.22 3.91-2.13-.67c-.463-.14-.472-.46.096-.68l8.34-3.22c.39-.14.73.09.61.68z"/></svg>
-        Перейти в Telegram-бот @grabtoybot
-      </a>
-      <p class="mt-4 text-slate-600">Заявки принимаются только через Telegram-бота.</p>
-    </div>
-  </section>
-
-  <!-- Контакты и карта -->
-  <section class="py-16 bg-white" id="contacts">
-    <div class="mx-auto max-w-4xl px-4 grid gap-8 md:grid-cols-2 items-center">
-      <div>
-        <h2 class="text-2xl font-bold mb-4 text-brand-700">Контакты</h2>
-        <ul class="text-lg text-slate-700 space-y-2 mb-4">
-          <li><span class="font-bold">Дмитрий</span>, г. Ярославль</li>
-          <li>Телефон: <a href="tel:+79201013555" class="text-brand-700 hover:underline">+7 (920) 101-35-55</a></li>
-          <li>Telegram: <a href="https://t.me/igruchka_opt" target="_blank" class="text-brand-700 hover:underline">@igruchka_opt</a></li>
-        </ul>
-        <a href="#form" class="inline-flex items-center rounded-2xl border border-slate-300 px-5 py-3 hover:bg-white">Оставить заявку</a>
-      </div>
-      <div class="rounded-3xl overflow-hidden shadow">
-        <iframe title="Карта Ярославля" width="100%" height="360" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=39.73%2C57.55%2C40.06%2C57.70&layer=mapnik&marker=57.6266%2C39.8938"></iframe>
-        <div class="bg-white p-3 text-sm text-slate-600"><a class="text-brand-700 hover:underline" target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=57.6266&mlon=39.8938#map=12/57.6266/39.8938">Открыть карту в OSM</a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Футер -->
-  <footer class="border-t border-slate-200">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-slate-600">© <span id="year"></span> Хватайка. Игрушки для автоматов — оптом.</p>
-      <nav class="flex items-center gap-4 text-sm">
-        <a href="#about" class="hover:underline">О компании</a>
-        <a href="#terms" class="hover:underline">Условия</a>
-        <a href="#contacts" class="hover:underline">Контакты</a>
-      </nav>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-    // Current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Generate gallery items from source/images/img_001.jpg ... img_034.jpg
-    const grid = document.getElementById('grid');
-    const pad = (n) => String(n).padStart(3, '0');
-    for (let i = 1; i <= 34; i++) {
-      const num = pad(i);
-      const card = document.createElement('div');
-      card.className = 'group rounded-3xl overflow-hidden bg-white shadow hover:shadow-lg transition';
-      card.innerHTML = `
-        <div class="aspect-[4/3] overflow-hidden">
-          <img src="source/images/img_${num}.jpg" alt="Игрушка №${i}" class="h-full w-full object-cover group-hover:scale-105 transition" onerror="this.closest('.group').classList.add('hidden')" />
+<body>
+    <!-- Хедер -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="source/images/logo.jpg" alt="GrabToy логотип">
+                <div class="logo-text">GrabToy</div>
+            </div>
+            <nav>
+                <div class="mobile-menu-btn">☰</div>
+                <ul>
+                    <li><a href="#features">Преимущества</a></li>
+                    <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#conditions">Условия</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#advantages">Для Хватайки</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="p-4 flex items-center justify-between gap-2">
-          <div>
-            <h3 class="font-semibold">Игрушка №${i}</h3>
-            <p class="text-sm text-slate-600">Демо-карточка</p>
-          </div>
-          <a href="#form" class="inline-flex items-center rounded-xl bg-brand-600 px-3 py-2 text-white hover:bg-brand-700">Заказать</a>
-        </div>
-      `;
-      grid.appendChild(card);
-    }
+    </header>
 
-    // Simple form validation + toast
-    const form = document.getElementById('leadForm');
-    const toast = document.getElementById('toast');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
-      if (!name || !phone) {
-        alert('Пожалуйста, укажите имя и телефон');
-        return;
-      }
-      const phoneOk = /^\+?\d[\d\s\-()]{9,}$/.test(phone);
-      const emailOk = !email || /.+@.+\..+/.test(email);
-      if (!phoneOk) { alert('Проверьте номер телефона'); return; }
-      if (!emailOk) { alert('Проверьте email'); return; }
-      toast.classList.remove('hidden');
-      setTimeout(() => toast.classList.add('hidden'), 2600);
-      form.reset();
-      // TODO: заменить на реальную отправку (бот/бекенд)
-    });
-  </script>
+    <!-- Герой секция -->
+    <section class="hero">
+        <div class="container">
+            <h1>Мягкие игрушки оптом для автоматов «Хватайка» и магазинов</h1>
+            <p class="hero-subtitle">Размер 20–30 см • от 100 ₽ за штуку • доставка по всей России, Беларуси и Казахстану</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/79201013555" class="btn btn-whatsapp">WhatsApp</a>
+                <a href="https://t.me/+79201013555" class="btn btn-telegram">Telegram</a>
+                <a href="https://t.me/igruchka_opt" class="btn btn-telegram">Канал Telegram</a>
+                <a href="https://www.avito.ru/yaroslavl/tovary_dlya_detey_i_igrushki/igrushki_optom_dlya_apparata_hvatayka_miks-premium_4367175992" class="btn btn-avito">Канал Avito</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Наши преимущества</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>Оптовые цены</h3>
+                    <p>Цены напрямую с фабрик без посредников</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🧸</div>
+                    <h3>Идеальный размер</h3>
+                    <p>Игрушки оптимального размера 20–30 см</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <h3>Качество</h3>
+                    <p>Сертификаты качества и аккуратные швы</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставка по всей России за 1–4 дня</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📲</div>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Поддержка в Telegram круглосуточно</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📦</div>
+                    <h3>Большой ассортимент</h3>
+                    <p>Более 500 моделей в наличии</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог -->
+    <section class="catalog" id="catalog">
+        <div class="container">
+            <h2>Популярные модели</h2>
+            <p class="subtitle" style="text-align: center; margin-bottom: 30px;">Яркие, мягкие и милые игрушки для детей и автоматов «Хватайка». Размер 20–30 см.</p>
+            
+            <div class="carousel">
+                <div class="carousel-container" id="catalog-carousel">
+                    <!-- Карточки товаров будут добавлены через JavaScript -->
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prev-btn">←</button>
+                <button class="carousel-btn" id="next-btn">→</button>
+            </div>
+            
+            <div class="catalog-buttons">
+                <a href="https://t.me/igruchka_opt" class="btn">Смотреть полный каталог в Telegram канале</a>
+                <a href="https://www.avito.ru/yaroslavl/tovary_dlya_detey_i_igrushki/igrushki_optom_dlya_apparata_hvatayka_miks-premium_4367175992" class="btn btn-secondary">Смотреть полный каталог на Avito</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Условия работы -->
+    <section class="conditions" id="conditions">
+        <div class="container">
+            <h2>Условия сотрудничества</h2>
+            <div class="conditions-grid">
+                <div class="condition-item">
+                    <h3>Минимальный заказ</h3>
+                    <p>От 100 шт. — вы можете комбинировать разные модели</p>
+                </div>
+                <div class="condition-item">
+                    <h3>Доставка</h3>
+                    <p>Транспортной компанией в любой город РФ, Беларусь и Казахстан</p>
+                </div>
+                <div class="condition-item">
+                    <h3>Оплата</h3>
+                    <p>По счёту, перевод на расчётный счёт или карту. Безналичный расчёт для юр. лиц и ИП</p>
+                </div>
+                <div class="condition-item">
+                    <h3>Сроки отправки</h3>
+                    <p>1-2 дня после оплаты. Наличие товара уточняйте у менеджера</p>
+                </div>
+                <div class="condition-item">
+                    <h3>Транспортные компании</h3>
+                    <p>СДЭК, Деловые Линии, ПЭК, Энергия, через Avito и др.</p>
+                </div>
+                <div class="condition-item">
+                    <h3>Самовывоз</h3>
+                    <p>Возможен самовывоз из Ярославля (по договорённости)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <h2>Отзывы владельцев автоматов «Хватайка»</h2>
+            
+            <div class="reviews-carousel">
+                <div class="reviews-container" id="reviews-carousel">
+                    <!-- Отзывы будут добавлены через JavaScript -->
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="reviews-prev-btn">←</button>
+                <button class="carousel-btn" id="reviews-next-btn">→</button>
+            </div>
+            
+            <div class="all-reviews-link">
+                <a href="https://www.avito.ru/yaroslavl/tovary_dlya_detey_i_igrushki/igrushki_optom_dlya_apparata_hvatayka_miks-premium_4367175992#feedback" class="btn">Посмотреть все отзывы на Авито</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества для хватайки -->
+    <section class="advantages" id="advantages">
+        <div class="container">
+            <h2>Почему наши игрушки идеально подходят для «Хватайки»</h2>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">🎯</div>
+                    <div>
+                        <h3>Оптимальный размер</h3>
+                        <p>20–30 см — игрушки легко захватываются и смотрятся объёмно</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">⚖</div>
+                    <div>
+                        <h3>Лёгкий вес</h3>
+                        <p>Не перегружает автомат, удобно засыпать</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">💰</div>
+                    <div>
+                        <h3>Дешевле конкурентов</h3>
+                        <p>Себестоимость игры ниже, прибыль выше</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">🧸</div>
+                    <div>
+                        <h3>Ярчные дизайны</h3>
+                        <p>Повышают интерес игроков</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">📦</div>
+                    <div>
+                        <h3>Компактная упаковка</h3>
+                        <p>Экономия на хранении и доставке</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">✅</div>
+                    <div>
+                        <h3>Качество</h3>
+                        <p>Прочные материалы, аккуратные швы</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О компании -->
+    <section class="about">
+        <div class="container">
+            <h2>О компании</h2>
+            <div class="about-content">
+                <div>
+                    <p><strong>GrabToy</strong> — оптовый поставщик мягких игрушек в России. Склад в Ярославле, доставка по всей стране.</p>
+                    <p>Мы работаем напрямю с фабриками Китая, что позволяет держать лучшие цены и широкий ассортимент.</p>
+                    <p>Наши клиенты — владельцы автоматов «Хватайка», магазины игрушек, маркетплейсы и тиры.</p>
+                </div>
+                <div class="about-image">
+                    <img src="source/images/img_001.jpg" alt="Склад игрушек GrabToy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <h2>Контакты</h2>
+            <div class="contacts-grid">
+                <div>
+                    <div class="contact-info">
+                        <h3>Контактное лицо: Дмитрий</h3>
+                        <p>Город: Ярославль</p>
+                        <p>Телефон: <a href="tel:+79201013555">+7 (920) 101-35-55</a></p>
+                        <p>Email: <a href="mailto:info@grabtoy.ru">info@grabtoy.ru</a></p>
+                    </div>
+                    
+                    <div class="contact-methods">
+                        <a href="https://wa.me/79201013555" class="btn btn-whatsapp">WhatsApp</a>
+                        <a href="https://t.me/+79201013555" class="btn btn-telegram">Telegram</a>
+                        <a href="https://t.me/igruchka_opt" class="btn btn-telegram">Канал Telegram</a>
+                        <a href="https://www.avito.ru/yaroslavl/tovary_dlya_detey_i_igrushki/igrushki_optom_dlya_apparata_hvatayka_miks-premium_4367175992" class="btn btn-avito">Канал Avito</a>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">GrabToy</div>
+                    <p>Оптовый поставщик мягких игрушек для автоматов «Хватайка» и магазинов</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79201013555">+7 (920) 101-35-55</a></li>
+                        <li><a href="mailto:info@grabtoy.ru">info@grabtoy.ru</a></li>
+                        <li>Ярославль</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Ссылки</h4>
+                    <ul>
+                        <li><a href="https://t.me/igruchka_opt">Telegram канал</a></li>
+                        <li><a href="https://www.avito.ru/yaroslavl/tovary_dlya_detey_i_igrushki/igrushki_optom_dlya_apparata_hvatayka_miks-premium_4367175992">Avito канал</a></li>
+                        <li><a href="#conditions">Условия работы</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 GrabToy. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация карточек на мобильных экранах (все основные секции)
+        function addMobileCardAnimations() {
+            if (window.innerWidth > 576) return;
+            // Каталог
+            const catalogCards = document.querySelectorAll('.carousel-item');
+            catalogCards.forEach((card, idx) => {
+                card.classList.add('card-animate');
+                if (idx % 2 === 0) card.classList.add('left');
+            });
+            // Отзывы
+            const reviewCards = document.querySelectorAll('.review-item');
+            reviewCards.forEach((card, idx) => {
+                card.classList.add('card-animate');
+                if (idx % 2 === 0) card.classList.add('left');
+            });
+            // Преимущества
+            const featureCards = document.querySelectorAll('.feature-item');
+            featureCards.forEach((card, idx) => {
+                card.classList.add('card-animate');
+                if (idx % 2 === 0) card.classList.add('left');
+            });
+            // Условия
+            const conditionCards = document.querySelectorAll('.condition-item');
+            conditionCards.forEach((card, idx) => {
+                card.classList.add('card-animate');
+                if (idx % 2 === 0) card.classList.add('left');
+            });
+            // Преимущества для хватайки
+            const advantageCards = document.querySelectorAll('.advantage-item');
+            advantageCards.forEach((card, idx) => {
+                card.classList.add('card-animate');
+                if (idx % 2 === 0) card.classList.add('left');
+            });
+            // Intersection Observer для появления
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            [...catalogCards, ...reviewCards, ...featureCards, ...conditionCards, ...advantageCards].forEach(card => observer.observe(card));
+        }
+
+        // Мобильное меню
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+        
+        // Карусель товаров
+        const catalogCarousel = document.getElementById('catalog-carousel');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        // Генерация карточек товаров из 22 изображений
+        for (let i = 1; i <= 22; i++) {
+            const item = document.createElement('div');
+            item.className = 'carousel-item';
+            item.innerHTML = `
+                <img src="source/images/img_${i.toString().padStart(3, '0')}.jpg" alt="Мягкая игрушка ${i}">
+                <div class="carousel-item-content">
+                    <h3>Игрушка ${i}</h3>
+                    <p>Размер: 20-30 см</p>
+                    <p>Цена: от 100 руб.</p>
+                </div>
+            `;
+            catalogCarousel.appendChild(item);
+        }
+        
+        // Клонируем первые и последние элементы для бесконечной прокрутки
+        const catalogItems = catalogCarousel.querySelectorAll('.carousel-item');
+        const firstItemClone = catalogItems[0].cloneNode(true);
+        const secondItemClone = catalogItems[1].cloneNode(true);
+        const lastItemClone = catalogItems[catalogItems.length - 1].cloneNode(true);
+        const secondLastItemClone = catalogItems[catalogItems.length - 2].cloneNode(true);
+        
+        catalogCarousel.appendChild(firstItemClone);
+        catalogCarousel.appendChild(secondItemClone);
+        catalogCarousel.insertBefore(lastItemClone, catalogItems[0]);
+        catalogCarousel.insertBefore(secondLastItemClone, catalogItems[0]);
+        
+        let catalogPosition = - (document.querySelector('.carousel-item').offsetWidth + 20) * 2;
+        const catalogItemWidth = document.querySelector('.carousel-item').offsetWidth + 20;
+        catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+        
+        // Автопрокрутка каталога
+        let catalogAutoScroll = setInterval(() => {
+            catalogPosition -= catalogItemWidth;
+            catalogCarousel.style.transition = 'transform 0.5s ease';
+            catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+        }, 3000);
+        
+        // Останавливаем автопрокрутку при наведении
+        catalogCarousel.addEventListener('mouseenter', () => {
+            clearInterval(catalogAutoScroll);
+        });
+        
+        // Возобновляем автопрокрутку при уходе курсора
+        catalogCarousel.addEventListener('mouseleave', () => {
+            catalogAutoScroll = setInterval(() => {
+                catalogPosition -= catalogItemWidth;
+                catalogCarousel.style.transition = 'transform 0.5s ease';
+                catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+            }, 3000);
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            clearInterval(catalogAutoScroll);
+            catalogPosition -= catalogItemWidth;
+            catalogCarousel.style.transition = 'transform 0.5s ease';
+            catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+            
+            // Перезапускаем автопрокрутку после клика
+            setTimeout(() => {
+                catalogAutoScroll = setInterval(() => {
+                    catalogPosition -= catalogItemWidth;
+                    catalogCarousel.style.transition = 'transform 0.5s ease';
+                    catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+                }, 3000);
+            }, 5000);
+        });
+        
+        prevBtn.addEventListener('click', function() {
+            clearInterval(catalogAutoScroll);
+            catalogPosition += catalogItemWidth;
+            catalogCarousel.style.transition = 'transform 0.5s ease';
+            catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+            
+            // Перезапускаем автопрокрутку после клика
+            setTimeout(() => {
+                catalogAutoScroll = setInterval(() => {
+                    catalogPosition -= catalogItemWidth;
+                    catalogCarousel.style.transition = 'transform 0.5s ease';
+                    catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+                }, 3000);
+            }, 5000);
+        });
+        
+        catalogCarousel.addEventListener('transitionend', function() {
+            const totalItems = catalogCarousel.querySelectorAll('.carousel-item').length;
+            
+            if (catalogPosition <= -catalogItemWidth * (totalItems - 2)) {
+                catalogCarousel.style.transition = 'none';
+                catalogPosition = -catalogItemWidth * 2;
+                catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+            }
+            
+            if (catalogPosition >= -catalogItemWidth) {
+                catalogCarousel.style.transition = 'none';
+                catalogPosition = -catalogItemWidth * (totalItems - 4);
+                catalogCarousel.style.transform = `translateX(${catalogPosition}px)`;
+            }
+        });
+        
+        // Карусель отзывов
+        const reviewsCarousel = document.getElementById('reviews-carousel');
+        const reviewsPrevBtn = document.getElementById('reviews-prev-btn');
+        const reviewsNextBtn = document.getElementById('reviews-next-btn');
+        
+        // Данные отзывов
+        const reviewsData = [
+            {
+                text: "Игрушки 25 см идеально подходят для аппаратов. Хватаются хорошо, покупатели довольны. Продажи выросли, автомат стал приносить больше выручки.",
+                author: "Иван, владелец 3 автоматов «Хватайка», Ярославль"
+            },
+            {
+                text: "Берём только у этого поставщика. Размер 20–30 см самый востребованный — и в автомате смотрятся красиво, и детям нравится. Окупаемость отличная.",
+                author: "Дмитрий, Казань"
+            },
+            {
+                text: "Заполняем автоматы плюшевыми мишками и зайцами 20 см. Люди играют охотнее, чем с большими игрушками. За месяц автоматы окупили партию полностью.",
+                author: "Олег, Москва"
+            },
+            {
+                text: "Раньше заказывали у разных поставщиков — было много брака. Сейчас работаем только с GrabToy: игрушки качественные, ровные, без запаха. Для «Хватайки» самое то.",
+                author: "Сергей, Самара"
+            },
+            {
+                text: "Очень радует быстрая доставка. Партия для наших автоматов приехала в Нижний Новгород за два дня. Игрушки упакованы идеально, сразу засыпали в аппараты.",
+                author: "Влад, Нижний Новгород"
+            },
+            {
+                text: "Игрушки небольшого размера — 20–25 см — оптимальны. Автомат выглядит полным, а себестоимость игры остаётся низкой. Мы увеличили маржинальность на 30%.",
+                author: "Александр, Екатеринбург"
+            },
+            {
+                text: "Качество очень важно: если игрушка рвётся или плохо прошита, игроки недовольны. Здесь всё супер! Берём ежемесячно партии по 500–700 штук.",
+                author: "Наталья, Ростов-на-Дону"
+            }
+        ];
+        
+        // Генерация отзывов
+        reviewsData.forEach(review => {
+            const item = document.createElement('div');
+            item.className = 'review-item';
+            item.innerHTML = `
+                <p class="review-text">${review.text}</p>
+                <p class="review-author">${review.author}</p>
+            `;
+            reviewsCarousel.appendChild(item);
+        });
+        
+        // Клонируем первый и последний отзывы для бесконечной прокрутки
+        const reviewItems = reviewsCarousel.querySelectorAll('.review-item');
+        const firstReviewClone = reviewItems[0].cloneNode(true);
+        const lastReviewClone = reviewItems[reviewItems.length - 1].cloneNode(true);
+        
+        reviewsCarousel.appendChild(firstReviewClone);
+        reviewsCarousel.insertBefore(lastReviewClone, reviewItems[0]);
+        
+        let reviewsPosition = - (document.querySelector('.review-item').offsetWidth + 20);
+        const reviewItemWidth = document.querySelector('.review-item').offsetWidth + 20;
+        reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+        
+        // Автопрокрутка отзывов
+        let reviewsAutoScroll = setInterval(() => {
+            reviewsPosition -= reviewItemWidth;
+            reviewsCarousel.style.transition = 'transform 0.5s ease';
+            reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+        }, 4000);
+        
+        // Останавливаем автопрокрутку при наведении
+        reviewsCarousel.addEventListener('mouseenter', () => {
+            clearInterval(reviewsAutoScroll);
+        });
+        
+        // Возобновляем автопрокрутку при уходе курсора
+        reviewsCarousel.addEventListener('mouseleave', () => {
+            reviewsAutoScroll = setInterval(() => {
+                reviewsPosition -= reviewItemWidth;
+                reviewsCarousel.style.transition = 'transform 0.5s ease';
+                reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+            }, 4000);
+        });
+        
+        reviewsNextBtn.addEventListener('click', function() {
+            clearInterval(reviewsAutoScroll);
+            reviewsPosition -= reviewItemWidth;
+            reviewsCarousel.style.transition = 'transform 0.5s ease';
+            reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+            
+            // Перезапускаем автопрокрутку после клика
+            setTimeout(() => {
+                reviewsAutoScroll = setInterval(() => {
+                    reviewsPosition -= reviewItemWidth;
+                    reviewsCarousel.style.transition = 'transform 0.5s ease';
+                    reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+                }, 4000);
+            }, 6000);
+        });
+        
+        reviewsPrevBtn.addEventListener('click', function() {
+            clearInterval(reviewsAutoScroll);
+            reviewsPosition += reviewItemWidth;
+            reviewsCarousel.style.transition = 'transform 0.5s ease';
+            reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+            
+            // Перезапускаем автопрокрутку после клика
+            setTimeout(() => {
+                reviewsAutoScroll = setInterval(() => {
+                    reviewsPosition -= reviewItemWidth;
+                    reviewsCarousel.style.transition = 'transform 0.5s ease';
+                    reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+                }, 4000);
+            }, 6000);
+        });
+        
+        reviewsCarousel.addEventListener('transitionend', function() {
+            const totalReviews = reviewsCarousel.querySelectorAll('.review-item').length;
+            
+            if (reviewsPosition <= -reviewItemWidth * (totalReviews - 1)) {
+                reviewsCarousel.style.transition = 'none';
+                reviewsPosition = -reviewItemWidth;
+                reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+            }
+            
+            if (reviewsPosition >= 0) {
+                reviewsCarousel.style.transition = 'none';
+                reviewsPosition = -reviewItemWidth * (totalReviews - 2);
+                reviewsCarousel.style.transform = `translateX(${reviewsPosition}px)`;
+            }
+        });
+        
+        // Инициализация карты
+        ymaps.ready(init);
+        
+        function init() {
+            const map = new ymaps.Map('map', {
+                center: [57.626, 39.884], // Координаты Ярославля
+                zoom: 11
+            });
+            
+            // Добавляем метку
+            const placemark = new ymaps.Placemark([57.626, 39.884], {
+                hintContent: 'GrabToy - склад игрушек',
+                balloonContent: 'Склад мягких игрушек GrabToy в Ярославле'
+            }, {
+                iconLayout: 'default#image',
+                iconImageHref: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+                iconImageSize: [40, 40],
+                iconImageOffset: [-20, -40]
+            });
+            
+            map.geoObjects.add(placemark);
+        }
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+
+        // Запуск анимации карточек на мобильных экранах после генерации DOM
+        window.addEventListener('DOMContentLoaded', addMobileCardAnimations);
+    </script>
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        
+        ym(номер_счетчика, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/номер_счетчика" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </body>
-</html>
+</html> 
